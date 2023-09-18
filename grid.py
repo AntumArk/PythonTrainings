@@ -45,7 +45,7 @@ class TicTacGrid:
                 self.print_no_endl(TicTacChars.V_LINE.value)
         print()
 
-    def get_vertical_line(self, scale, cells) -> str:
+    def get_draw_vertical_line(self, scale, cells) -> str:
         output_str = ""
         for index in range(self.grid_size):
             output_str += self.get_print_filled_cell(scale, cells[index])
@@ -103,6 +103,18 @@ class TicTacGrid:
             if index != self.grid_size - 1:
                 self.print_no_endl(TicTacChars.H_CROSS.value)
         print()
+    
+    def get_draw_horizontal_line(self, scale) -> str:
+        """Prints one row which separates grid visually"""
+        # This is where empty lines should be drawn
+        output_str = "\n"
+        for index in range(self.grid_size):
+            for _ in range(self.whitespaces_per_cell * scale):
+                output_str += TicTacChars.H_LINE.value
+            if index != self.grid_size - 1:
+                output_str += TicTacChars.H_CROSS.value
+        output_str += "\n"
+        return output_str
 
     def draw_grid(self, cells):
         """Draws all grid based on cell content"""
@@ -115,3 +127,15 @@ class TicTacGrid:
             if row != self.grid_size - 1:
                 self.draw_horizontal_line(self.grid_scale_x)
         print()
+
+    def get_draw_grid(self, cells) -> str:
+        """Draws all grid based on cell content"""
+        output_str = ""
+        for row in range(self.grid_size):
+            output_str += self.get_draw_vertical_line(
+                self.grid_scale_y,
+                cells[0 + self.grid_size * row : self.grid_size + self.grid_size * row],
+            )
+            if row != self.grid_size - 1:
+                output_str += self.get_draw_horizontal_line(self.grid_scale_x)
+        return output_str

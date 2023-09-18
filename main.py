@@ -55,7 +55,7 @@ game_cells_tie = [
 
 for ui in gridUI:
     # ui.draw_grid(game_cells_tie)
-    ui.print_no_endl(ui.get_vertical_line(1, game_cells_tie))
-    ui.print_no_endl("┃")
-
+    print()
+    print(ui.get_draw_grid(game_cells_tie))
+    print()
 # controller.run()

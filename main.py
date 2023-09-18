@@ -42,7 +42,7 @@ def print_filled_cell(scale, value):
         print_no_endl(x_character)
     if value == o:
         print_no_endl(o_character)  
-    for a in range(whitespaces_per_cell-x_whitespaces*scale):
+    for a in range(whitespaces_per_cell*scale-x_whitespaces):
         print_no_endl(blank_character)
 
 def print_no_endl(text):
@@ -80,6 +80,6 @@ game_cells=[x,0,o,
             x,o,x,
             0,0,0]
 
-draw_grid(1,1,game_cells)
+draw_grid(2,2,game_cells)
 # print(x_character)
 # print(o_character)

@@ -1,19 +1,11 @@
 from grid import TicTacGrid, TicTacValues
-from TicTacToeSolver import solve_ticTacToe
 from Controller import GameController
 
 print("Hello world")
 
 
-# draw_vertical_line(1)
-# draw_horizontal_line(1)
-# draw_vertical_line(2)
-# draw_horizontal_line(2)
-# draw_vertical_line(3)
-# draw_horizontal_line(3)
-
 gridUI = TicTacGrid(1, 1)
-controller=GameController()
+controller = GameController()
 # fmt: off
 game_cells = [
     TicTacValues.Z,    TicTacValues.Z,    TicTacValues.O,

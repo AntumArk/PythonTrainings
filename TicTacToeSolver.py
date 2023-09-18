@@ -18,7 +18,7 @@ def solve_ticTacToe(cells) -> TicTacValues:
 
     if check_board_full(cells):
         print("TIE")
-        return TicTacValues.Z    
+        return TicTacValues.Z
     print("Game is still going")
     return TicTacValues.Z
 
@@ -41,7 +41,9 @@ def check_columns(cells) -> TicTacValues:
     print("Checking Columns")
     grid_size = 3
     for cycle in range(grid_size):
-        cell_sum = cells[cycle] + cells[cycle + grid_size] + cells[cycle + 2 * grid_size]
+        cell_sum = (
+            cells[cycle] + cells[cycle + grid_size] + cells[cycle + 2 * grid_size]
+        )
         print("cell_sum ", cell_sum)
         result = check_win(cell_sum)
         if result != TicTacValues.Z:
@@ -52,7 +54,7 @@ def check_columns(cells) -> TicTacValues:
 # end def
 
 
-def check_crosses(cells)-> TicTacValues:
+def check_crosses(cells) -> TicTacValues:
     print("Checking crosses")
     center_index = 4
     first_point = 0

@@ -67,7 +67,7 @@ class GameController:
             self.current_player = TicTacValues.X
 
     def get_player_from_input(self):
-        print('Select which player starts. Enter "X" or "Y"')
+        print('Select which player starts. Enter "X" or "O"')
         line = input()
         if len(line) > 1:
             print("invalid input")

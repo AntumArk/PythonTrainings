@@ -1,7 +1,8 @@
 from grid import TicTacValues
 from typing import List
 
-def solve_ticTacToe(cells)-> TicTacValues:
+
+def solve_ticTacToe(cells) -> TicTacValues:
     print("Solving")
     check_crosses(cells)
     check_rows(cells)
@@ -63,8 +64,9 @@ def check_win(sum: int) -> bool:
         return True
     return False
 
-def check_board_full(cells:List[TicTacValues]) -> bool:
+
+def check_board_full(cells: List[TicTacValues]) -> bool:
     for _, cell in enumerate(cells):
         if cell.value == TicTacValues.Z:
             return False
-    return True    
+    return True

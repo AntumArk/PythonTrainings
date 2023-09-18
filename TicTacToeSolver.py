@@ -1,9 +1,15 @@
-def solve_ticTacToe(cells):
+from grid import TicTacValues
+from typing import List
+
+def solve_ticTacToe(cells)-> TicTacValues:
     print("Solving")
     check_crosses(cells)
     check_rows(cells)
     check_columns(cells)
-    print("tie")
+    if check_board_full(cells):
+        print("tie")
+        return TicTacValues.Z
+    print("Game is still going")
 
 
 def check_rows(cells):
@@ -38,7 +44,7 @@ def check_crosses(cells):
     last_point = 8
     cycles_to_solve = 4
     for cycle in range(cycles_to_solve):
-        print("cycle ", cycle)
+        # print("cycle ", cycle)
         sum = cells[first_point] + cells[center_index] + cells[last_point]
         print("Sum ", sum)
         if check_win(sum):
@@ -56,3 +62,9 @@ def check_win(sum: int) -> bool:
         print("O WON!")
         return True
     return False
+
+def check_board_full(cells:List[TicTacValues]) -> bool:
+    for _, cell in enumerate(cells):
+        if cell.value == TicTacValues.Z:
+            return False
+    return True    

@@ -30,6 +30,12 @@ game_cells_O = [
     TicTacValues.O,    TicTacValues.O,    TicTacValues.O,
     TicTacValues.Z,    TicTacValues.Z,    TicTacValues.Z,
 ]
+# Tie  cells
+game_cells_tie = [
+    TicTacValues.X,    TicTacValues.O,    TicTacValues.O,
+    TicTacValues.O,    TicTacValues.O,    TicTacValues.X,
+    TicTacValues.X,    TicTacValues.X,    TicTacValues.O,
+]
 # fmt: on
 gridUI.draw_grid(game_cells)
 # print(x_character)
@@ -41,4 +47,9 @@ solve_ticTacToe(game_cells_X)
 print()
 gridUI.draw_grid(game_cells_O)
 solve_ticTacToe(game_cells_O)
+print()
+
+
+gridUI.draw_grid(game_cells_tie)
+solve_ticTacToe(game_cells_tie)
 print()

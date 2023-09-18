@@ -3,8 +3,8 @@ print("Hello world")
 grid_width : int = 5
 grid_height : int = 3
 blank_character : str = "  "
-x_character : str = "X"
-o_character : str = "O"
+x_character : str = "❌"
+o_character : str = "⭕"
 horizontal_line_character : str = "──┼──┼──"
 vertical_line_character : str = "  │  │   "
 
@@ -34,3 +34,5 @@ def draw_grid(grid_width, grid_height):
 
 
 draw_grid(grid_width,grid_height)
+print(x_character)
+print(o_character)

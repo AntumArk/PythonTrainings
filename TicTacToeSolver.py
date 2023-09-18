@@ -8,24 +8,28 @@ def solve_ticTacToe(cells):
 
 def check_rows(cells):
     print("Checking Rows")
-    grid_size=3
+    grid_size = 3
     first_index = 0
     for cycle in range(grid_size):
-        sum = cells[first_index] + cells[first_index+1] + cells[first_index+2]
+        sum = cells[first_index] + cells[first_index + 1] + cells[first_index + 2]
         print("Sum ", sum)
         if check_win(sum):
-           return
-        first_index+=grid_size
-         
+            return
+        first_index += grid_size
+
+
 def check_columns(cells):
     print("Checking Columns")
-    grid_size=3
+    grid_size = 3
     for cycle in range(grid_size):
-        sum = cells[cycle] + cells[cycle+grid_size] + cells[cycle+2*grid_size]
+        sum = cells[cycle] + cells[cycle + grid_size] + cells[cycle + 2 * grid_size]
         print("Sum ", sum)
         if check_win(sum):
-           return
+            return
+
+
 # end def
+
 
 def check_crosses(cells):
     print("Checking crosses")
@@ -43,7 +47,8 @@ def check_crosses(cells):
         first_point += 1
         last_point -= 1
 
-def check_win(sum: int)-> bool: 
+
+def check_win(sum: int) -> bool:
     if sum == 3:
         print("X WON!")
         return True

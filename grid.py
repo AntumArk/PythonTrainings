@@ -41,7 +41,7 @@ class TicTacGrid:
         # This is where empty lines should be drawn
         for index in range(self.grid_size):
             self.print_filled_cell(scale, cells[index])
-            if index != self.grid_size-1:
+            if index != self.grid_size - 1:
                 self.print_no_endl(TicTacChars.V_LINE.value)
         print()
 
@@ -72,7 +72,7 @@ class TicTacGrid:
         for index in range(self.grid_size):
             for _ in range(self.whitespaces_per_cell * scale):
                 self.print_no_endl(TicTacChars.H_LINE.value)
-            if index != self.grid_size-1:
+            if index != self.grid_size - 1:
                 self.print_no_endl(TicTacChars.H_CROSS.value)
         print()
 
@@ -81,8 +81,9 @@ class TicTacGrid:
         print()
         for row in range(self.grid_size):
             self.draw_vertical_line(
-                self.grid_scale_y, cells[0 + self.grid_size*row :  self.grid_size+ self.grid_size*row]
+                self.grid_scale_y,
+                cells[0 + self.grid_size * row : self.grid_size + self.grid_size * row],
             )
-            if row != self.grid_size-1:
+            if row != self.grid_size - 1:
                 self.draw_horizontal_line(self.grid_scale_x)
         print()

@@ -45,10 +45,24 @@ class TicTacGrid:
                 self.print_no_endl(TicTacChars.V_LINE.value)
         print()
 
+    def get_vertical_line(self, scale, cells) -> str:
+        output_str = ""
+        for index in range(self.grid_size):
+            output_str += self.get_print_filled_cell(scale, cells[index])
+            if index != self.grid_size - 1:
+                output_str += TicTacChars.V_LINE.value
+        return output_str
+
     def print_blank_cell(self, scale):
         """Prints one blank grid cell"""
         for _ in range(self.whitespaces_per_cell * scale):
             self.print_no_endl(TicTacChars.Z.value)
+
+    def get_print_blank_cell(self, scale):
+        """Prints one blank grid cell"""
+        output_str = ""
+        for _ in range(self.whitespaces_per_cell * scale):
+            output_str += TicTacChars.Z.value
 
     def print_filled_cell(self, scale, value):
         """Prints filled cell"""
@@ -61,6 +75,20 @@ class TicTacGrid:
             self.print_no_endl(TicTacChars.O.value)
         for _ in range(self.whitespaces_per_cell * scale - self.x_whitespaces):
             self.print_no_endl(TicTacChars.Z.value)
+    
+    def get_print_filled_cell(self, scale, value)->str:
+        """Prints filled cell"""
+        output_str = ""
+        if value == TicTacValues.Z:
+            output_str += self.get_print_blank_cell(scale)
+            return
+        if value == TicTacValues.X:
+            output_str += TicTacChars.X.value
+        if value == TicTacValues.O:
+            output_str += TicTacChars.O.value
+        for _ in range(self.whitespaces_per_cell * scale - self.x_whitespaces):
+            output_str += TicTacChars.Z.value
+        return output_str
 
     def print_no_endl(self, text):
         """Prints something without line ending"""

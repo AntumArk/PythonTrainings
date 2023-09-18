@@ -4,7 +4,10 @@ from Controller import GameController
 print("Hello world")
 
 
-gridUI = TicTacGrid(1, 1)
+gridUI = [TicTacGrid(1, 1),TicTacGrid(1, 1),TicTacGrid(1, 1)]
+
+
+
 controller = GameController()
 # fmt: off
 game_cells = [
@@ -50,4 +53,9 @@ game_cells_tie = [
 # print(solve_ticTacToe(game_cells_tie))
 # print()
 
-controller.run()
+for ui in gridUI:
+    # ui.draw_grid(game_cells_tie)
+    ui.print_no_endl(ui.get_vertical_line(1, game_cells_tie))
+    ui.print_no_endl("┃")
+
+# controller.run()

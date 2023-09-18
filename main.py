@@ -40,16 +40,18 @@ game_cells_tie = [
 gridUI.draw_grid(game_cells)
 # print(x_character)
 # print(o_character)
-solve_ticTacToe(game_cells)
+print(solve_ticTacToe(game_cells))
 print()
+
 gridUI.draw_grid(game_cells_X)
-solve_ticTacToe(game_cells_X)
+print(solve_ticTacToe(game_cells_X))
 print()
+
 gridUI.draw_grid(game_cells_O)
-solve_ticTacToe(game_cells_O)
+print(solve_ticTacToe(game_cells_O))
 print()
 
 
 gridUI.draw_grid(game_cells_tie)
-solve_ticTacToe(game_cells_tie)
+print(solve_ticTacToe(game_cells_tie))
 print()

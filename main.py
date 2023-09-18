@@ -5,8 +5,8 @@ grid_height : int = 3
 blank_character : str = "  "
 x_character : str = "❌"
 o_character : str = "⭕"
-horizontal_line_character : str = "──┼──┼──"
-vertical_line_character : str = "  │  │   "
+horizontal_line_character : str = "───┼───┼───"
+vertical_line_character : str = "   │   │    "
 
 
 

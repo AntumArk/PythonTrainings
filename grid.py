@@ -81,3 +81,9 @@ class TicTacGrid:
             if row != self.grid_size - 1:
                 output_str += self._get_horizontal_line(self.grid_draw_scale_x)
         return output_str
+
+    def get_game_result(self) -> TicTacValues:
+        solve_ticTacToe(self.cells, self.grid_size)
+
+    def is_finished(self) -> bool:
+        return self.get_game_result() != TicTacValues.Z

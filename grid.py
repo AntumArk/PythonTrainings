@@ -12,8 +12,8 @@ def print_no_endl(text):
 class TicTacGrid:
     """Class for drawing TicTacToe"""
 
-    whitespaces_per_filled_cell: int = 2  # 2 whitespaces long
-    whitespaces_per_cell: int = 3
+    WHITESPACES_PER_FILLED_CELL: int = 2  # 2 whitespaces long
+    WHITESPACES_PER_CELL: int = 3
 
     def __init__(
         self, grid_draw_scale_x: int = 1, grid_draw_scale_y: int = 1, grid_size: int = 3
@@ -38,7 +38,7 @@ class TicTacGrid:
     def _get_blank_cell(self, scale) -> str:
         """Prints one blank grid cell"""
         output_str = ""
-        for _ in range(self.whitespaces_per_cell * scale):
+        for _ in range(self.WHITESPACES_PER_CELL * scale):
             output_str += TicTacChars.Z.value
         return output_str
 
@@ -53,7 +53,7 @@ class TicTacGrid:
         if value == TicTacValues.O:
             output_str += TicTacChars.O.value
         for _ in range(
-            self.whitespaces_per_cell * scale - self.whitespaces_per_filled_cell
+            self.WHITESPACES_PER_CELL * scale - self.WHITESPACES_PER_FILLED_CELL
         ):
             output_str += TicTacChars.Z.value
         return output_str
@@ -63,7 +63,7 @@ class TicTacGrid:
         # This is where empty lines should be drawn
         output_str = "\n"
         for index in range(self.grid_size):
-            for _ in range(self.whitespaces_per_cell * scale):
+            for _ in range(self.WHITESPACES_PER_CELL * scale):
                 output_str += TicTacChars.H_LINE.value
             if index != self.grid_size - 1:
                 output_str += TicTacChars.H_CROSS.value

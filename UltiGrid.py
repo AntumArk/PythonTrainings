@@ -17,7 +17,7 @@ class UltimateGrid:
         self.cells = [TicTacValues.Z] * (grid_cells)
 
     def __str__(self) -> str:
-        pass
+        return "pass"
 
     def is_cell_free(self, active_board: int, cell: int) -> bool:
         return self.grids[active_board].cells[cell] == TicTacValues.Z
@@ -33,7 +33,7 @@ class UltimateGrid:
     def is_finished(self) -> bool:
         i = 0
         for grid in self.grids:
-            self.cell[i] = grid.get_game_result()
+            self.cells[i] = grid.get_game_result()
             i += 1
         return self.get_game_result() != TicTacValues.Z
 

@@ -24,7 +24,7 @@ class GameController:
 
     def pick_board(self) -> bool:
         print("Select which board to play [1-9]. Current player:", self.current_player)
-        self.active_board = self.parse_input()
+        self.active_board = self.parse_input(input())
         if self.active_board == self.INVALID_INPUT:
             print("Board input invalid, please restart")
             return False

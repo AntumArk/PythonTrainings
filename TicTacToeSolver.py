@@ -17,7 +17,7 @@ def solve_ticTacToe(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
 
     if check_board_full(cells):
         print("TIE")
-        return TicTacValues.Z
+        return TicTacValues.TIE
     print("Game is still going")
     return TicTacValues.Z
 

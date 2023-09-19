@@ -1,65 +1,81 @@
 from TicTacConstants import TicTacValues
 from grid import TicTacGrid
 from TicTacToeSolver import solve_ticTacToe, check_board_full
+from UltiGrid import UltimateGrid
 
 
 class GameController:
-    game_cells = [
-        TicTacValues.Z,
-        TicTacValues.Z,
-        TicTacValues.Z,
-        TicTacValues.Z,
-        TicTacValues.Z,
-        TicTacValues.Z,
-        TicTacValues.Z,
-        TicTacValues.Z,
-        TicTacValues.Z,
-    ]
-    UI: TicTacGrid = TicTacGrid(1, 1)
-
     current_player = TicTacValues.Z
+    INVALID_INPUT: int = -1
 
-    def __init__(self) -> None:
-        pass
+    def __init__(self, grid_size: int = 3) -> None:
+        self.grid_size = grid_size
+        self.ultimate_grid = UltimateGrid(1, 1, grid_size)
+        self.active_board = -1
 
     def run(self):
         self.current_player = self.get_player_from_input()
         if self.current_player == TicTacValues.Z:
             print("Invalid player cant play.")
             return
+        self.pick_board()
+
         self.play()
 
+    def pick_board(self) -> bool:
+        print("Select which board to play [1-9]. Current player:", self.current_player)
+        self.active_board = self.parse_input()
+        if self.active_board == self.INVALID_INPUT:
+            print("Board input invalid, please restart")
+            return False
+        return True
+
     def play(self):
-        self.UI.draw_grid(self.game_cells)
-        while (
-            not check_board_full(self.game_cells)
-            and solve_ticTacToe(self.game_cells) == TicTacValues.Z
-        ):
-            self.UI.draw_grid(self.game_cells)
+        print(self.ultimate_grid)
+        while not self.ultimate_grid.is_finished():
+            print(self.ultimate_grid)
             print(
-                "Select which cell to enter[1-9]. Current player:", self.current_player
+                "Select which cell to enter[1-9].\n Current player:",
+                self.current_player,
+                "\n current board:",
+                self.active_board + 1,
             )
-            if self.parse_input(input()):
-                self.switch_player()
+            cell = self.parse_input(input())
+            if cell != self.INVALID_INPUT:
+                if self.is_cell_free(cell):
+                    self.ultimate_grid.set_cell_value(
+                        self.active_board, cell, self.current_player
+                    )
+                    self.switch_player()
+                    self.set_active_board(cell)
+                else:
+                    print("Cell is not empty")
             else:
                 print("Failed to parse input")
+
         print("GAME OVER")
 
-    def parse_input(self, text) -> bool:
+    def set_active_board(self, cell):
+        self.active_board = cell
+        if self.ultimate_grid.is_sub_grid_finished(self.active_board):
+            print("Board is already finished, please pick another one")
+            while self.pick_board():
+                print("Picking board")
+
+    def parse_input(self, text) -> int:
         try:
             cell = int(text)
-            if cell > 9 or cell < 1:
+            if cell > self.grid_size**2 or cell < 1:
                 raise ValueError("Input out of [1-9] range")
             cell -= 1  # move to zero based system
-            self.check_if_occupied(cell)
-            self.game_cells[cell] = self.current_player
-            return True
-        except ValueError:
-            return False
+            return cell
 
-    def check_if_occupied(self, cell):
-        if self.game_cells[cell] != TicTacValues.Z:
-            raise ValueError("Cell is already occupied")
+        except ValueError:
+            print("Invalid input")
+            return self.INVALID_INPUT
+
+    def is_cell_free(self, cell: int) -> bool:
+        return self.ultimate_grid.is_cell_free(self.active_board, cell)
 
     def switch_player(self):
         if self.current_player == TicTacValues.X:

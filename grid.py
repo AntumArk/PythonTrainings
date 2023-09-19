@@ -83,7 +83,7 @@ class TicTacGrid:
         return output_str
 
     def get_game_result(self) -> TicTacValues:
-        solve_ticTacToe(self.cells, self.grid_size)
+        return solve_ticTacToe(self.cells, self.grid_size)
 
     def is_finished(self) -> bool:
         return self.get_game_result() != TicTacValues.Z

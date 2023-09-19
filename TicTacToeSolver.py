@@ -1,8 +1,7 @@
 from grid import TicTacValues
-from typing import List
 
 
-def solve_ticTacToe(cells, grid_size: int) -> TicTacValues:
+def solve_ticTacToe(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
     print("Solving")
     result = check_crosses(cells, grid_size)
     if result != TicTacValues.Z:
@@ -23,7 +22,7 @@ def solve_ticTacToe(cells, grid_size: int) -> TicTacValues:
     return TicTacValues.Z
 
 
-def check_rows(cells, grid_size: int) -> TicTacValues:
+def check_rows(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
     print("Checking Rows")
     for row in range(grid_size):
         cell_sum = sum(cells[row * grid_size : row * grid_size + grid_size])
@@ -34,7 +33,7 @@ def check_rows(cells, grid_size: int) -> TicTacValues:
     return TicTacValues.Z
 
 
-def check_columns(cells, grid_size: int) -> TicTacValues:
+def check_columns(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
     print("Checking Columns")
     for column in range(grid_size):
         cell_sum = sum(cells[column::grid_size])
@@ -45,7 +44,7 @@ def check_columns(cells, grid_size: int) -> TicTacValues:
     return TicTacValues.Z
 
 
-def check_crosses(cells, grid_size: int) -> TicTacValues:
+def check_crosses(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
     print("Checking crosses")
     center_index = 4
     first_point = 0
@@ -73,7 +72,7 @@ def check_win(cell_sum: int) -> TicTacValues:
     return TicTacValues.Z
 
 
-def check_board_full(cells: List[TicTacValues]) -> bool:
+def check_board_full(cells: list[TicTacValues]) -> bool:
     for _, cell in enumerate(cells):
         if cell.value == TicTacValues.Z:
             return False

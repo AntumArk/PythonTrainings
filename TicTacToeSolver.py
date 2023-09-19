@@ -45,12 +45,17 @@ def check_columns(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
 
 
 def check_crosses(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
-    print("Checking crosses")
-    center_index = 4
+
+    if grid_size % 2 == 0:
+        print("Not solving crosses for even grid")
+        return TicTacValues.Z
+
+    print("Checking crosses")    
+    last_point = grid_size * 2 - 1
+    center_index = int(last_point / 2)
     first_point = 0
-    last_point = 8
-    columns_to_solve = 4
-    for _ in range(columns_to_solve):
+    crosses_to_solve = 4
+    for _ in range(crosses_to_solve):
         cell_sum = cells[first_point] + cells[center_index] + cells[last_point]
         print("cell_sum ", cell_sum)
         result = check_win(cell_sum)

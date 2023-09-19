@@ -2,17 +2,17 @@ from grid import TicTacValues
 from typing import List
 
 
-def solve_ticTacToe(cells) -> TicTacValues:
+def solve_ticTacToe(cells, grid_size: int) -> TicTacValues:
     print("Solving")
-    result = check_crosses(cells)
+    result = check_crosses(cells, grid_size)
     if result != TicTacValues.Z:
         return result
 
-    result = check_rows(cells)
+    result = check_rows(cells, grid_size)
     if result != TicTacValues.Z:
         return result
 
-    result = check_columns(cells)
+    result = check_columns(cells, grid_size)
     if result != TicTacValues.Z:
         return result
 
@@ -23,27 +23,21 @@ def solve_ticTacToe(cells) -> TicTacValues:
     return TicTacValues.Z
 
 
-def check_rows(cells) -> TicTacValues:
+def check_rows(cells, grid_size: int) -> TicTacValues:
     print("Checking Rows")
-    grid_size = 3
-    first_index = 0
-    for _ in range(grid_size):
-        cell_sum = cells[first_index] + cells[first_index + 1] + cells[first_index + 2]
+    for row in range(grid_size):
+        cell_sum = sum(cells[row * grid_size : row * grid_size + grid_size])
         print("cell_sum ", cell_sum)
         result = check_win(cell_sum)
         if result != TicTacValues.Z:
             return result
-        first_index += grid_size
     return TicTacValues.Z
 
 
-def check_columns(cells) -> TicTacValues:
+def check_columns(cells, grid_size: int) -> TicTacValues:
     print("Checking Columns")
-    grid_size = 3
-    for cycle in range(grid_size):
-        cell_sum = (
-            cells[cycle] + cells[cycle + grid_size] + cells[cycle + 2 * grid_size]
-        )
+    for column in range(grid_size):
+        cell_sum = sum(cells[column::grid_size])
         print("cell_sum ", cell_sum)
         result = check_win(cell_sum)
         if result != TicTacValues.Z:
@@ -51,16 +45,13 @@ def check_columns(cells) -> TicTacValues:
     return TicTacValues.Z
 
 
-# end def
-
-
-def check_crosses(cells) -> TicTacValues:
+def check_crosses(cells, grid_size: int) -> TicTacValues:
     print("Checking crosses")
     center_index = 4
     first_point = 0
     last_point = 8
-    cycles_to_solve = 4
-    for _ in range(cycles_to_solve):
+    columns_to_solve = 4
+    for _ in range(columns_to_solve):
         cell_sum = cells[first_point] + cells[center_index] + cells[last_point]
         print("cell_sum ", cell_sum)
         result = check_win(cell_sum)

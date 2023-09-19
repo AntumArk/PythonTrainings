@@ -33,6 +33,10 @@ class TicTacGrid:
         self.grid_draw_scale_x = grid_draw_scale_x
         self.grid_draw_scale_y = grid_draw_scale_y
         self.grid_size = grid_size
+        self.cells = [TicTacValues.Z] * (grid_size ** 2)
+
+    def __str__(self) -> str:
+        return str(self.cells)
 
     def draw_vertical_line(self, scale, cells):
         """Draws one grid row cells. Cells can be either blank, X or O"""

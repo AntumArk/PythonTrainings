@@ -87,3 +87,8 @@ class TicTacGrid:
 
     def is_finished(self) -> bool:
         return self.get_game_result() != TicTacValues.Z
+
+    def set_cell_value(self, current_player: TicTacValues, cell_index: int):
+        if cell_index > self.grid_size**2:
+            raise ValueError("Trying to set value out of bounds")
+        self.cells[cell_index] = current_player

@@ -24,15 +24,15 @@ class TicTacChars(Enum):
 class TicTacGrid:
     """Class for drawing TicTacToe"""
 
-    grid_size: int = 3
-    grid_width_scale: int = 5
-    grid_height: int = 3
-    x_whitespaces: int = 2  # 2 whitespaces long
+    whitespaces_per_filled_cell: int = 2  # 2 whitespaces long
     whitespaces_per_cell: int = 3
 
-    def __init__(self, grid_draw_scale_x: int = 1, grid_draw_scale_y: int = 1) -> None:
+    def __init__(
+        self, grid_draw_scale_x: int = 1, grid_draw_scale_y: int = 1, grid_size: int = 3
+    ) -> None:
         self.grid_draw_scale_x = grid_draw_scale_x
         self.grid_draw_scale_y = grid_draw_scale_y
+        self.grid_size = grid_size
 
     def draw_vertical_line(self, scale, cells):
         """Draws one grid row cells. Cells can be either blank, X or O"""
@@ -71,7 +71,7 @@ class TicTacGrid:
             self.print_no_endl(TicTacChars.X.value)
         if value == TicTacValues.O:
             self.print_no_endl(TicTacChars.O.value)
-        for _ in range(self.whitespaces_per_cell * scale - self.x_whitespaces):
+        for _ in range(self.whitespaces_per_cell * scale - self.whitespaces_per_filled_cell):
             self.print_no_endl(TicTacChars.Z.value)
 
     def get_print_filled_cell(self, scale, value) -> str:
@@ -84,7 +84,7 @@ class TicTacGrid:
             output_str += TicTacChars.X.value
         if value == TicTacValues.O:
             output_str += TicTacChars.O.value
-        for _ in range(self.whitespaces_per_cell * scale - self.x_whitespaces):
+        for _ in range(self.whitespaces_per_cell * scale - self.whitespaces_per_filled_cell):
             output_str += TicTacChars.Z.value
         return output_str
 

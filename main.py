@@ -1,4 +1,5 @@
-from grid import TicTacGrid, TicTacValues
+from TicTacConstants import TicTacValues
+from grid import TicTacGrid
 from Controller import GameController
 
 print("Hello world")

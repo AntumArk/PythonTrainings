@@ -1,4 +1,5 @@
-from grid import TicTacGrid, TicTacValues
+from TicTacConstants import TicTacValues
+from grid import TicTacGrid
 from TicTacToeSolver import solve_ticTacToe, check_board_full
 
 

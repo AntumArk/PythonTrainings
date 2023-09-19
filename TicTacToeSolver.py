@@ -1,4 +1,4 @@
-from grid import TicTacValues
+from TicTacConstants import TicTacValues
 
 
 def solve_ticTacToe(cells: list[TicTacValues], grid_size: int) -> TicTacValues:

@@ -1,24 +1,7 @@
 """ Module for drawing tic tac toe grid and cell values"""
-from enum import IntEnum, Enum
 
-
-class TicTacValues(IntEnum):
-    """Enumerator for game logic"""
-
-    Z = 0
-    X = 1
-    O = -1
-
-
-class TicTacChars(Enum):
-    """Enumerator for characters used in drawing TicTacToe"""
-
-    Z = " "
-    X = "❌"
-    O = "⭕"
-    H_LINE = "─"
-    V_LINE = "│"
-    H_CROSS = "┼"
+from TicTacToeSolver import solve_ticTacToe
+from TicTacConstants import TicTacValues, TicTacChars
 
 
 def print_no_endl(text):

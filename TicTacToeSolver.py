@@ -45,9 +45,6 @@ def check_columns(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
 
 
 def check_crosses(cells: list[TicTacValues], grid_size: int) -> TicTacValues:
-    if grid_size % 2 == 0:
-        print("Not solving crosses for even grid")
-        return TicTacValues.Z
 
     # Primary principal
     print("Checking crosses")

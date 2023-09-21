@@ -7,7 +7,13 @@ class TicTacValues(IntEnum):
     Z = 0
     X = 1
     O = -1
-    TIE = 2
+
+
+class TicTacGameResults(IntEnum):
+    IN_PROGRESS = 0
+    X_WON = 1
+    O_WON = 2
+    TIE = 3
 
 
 class TicTacChars(Enum):

@@ -1,7 +1,7 @@
 """ Module for drawing tic tac toe grid and cell values"""
 
 from TicTacToeSolver import solve_ticTacToe
-from TicTacConstants import TicTacValues, TicTacChars
+from TicTacConstants import TicTacValues, TicTacGameResults, TicTacChars
 
 
 def print_no_endl(text):
@@ -82,13 +82,20 @@ class TicTacGrid:
                 output_str += self._get_horizontal_line(self.grid_draw_scale_x)
         return output_str
 
-    def get_game_result(self) -> TicTacValues:
+    def get_game_result(self) -> TicTacGameResults:
         return solve_ticTacToe(self.cells, self.grid_size)
 
     def is_finished(self) -> bool:
-        return self.get_game_result() != TicTacValues.Z
+        return self.get_game_result() != TicTacGameResults.IN_PROGRESS
 
-    def set_cell_value(self, current_player: TicTacValues, cell_index: int):
-        if cell_index > self.grid_size**2:
-            raise ValueError("Trying to set value out of bounds")
-        self.cells[cell_index] = current_player
+    def __setitem__(self, cell: int, value: TicTacValues):
+        self.check_index_bounds(cell)
+        self.cells[cell] = value
+
+    def check_index_bounds(self, cell):
+        if cell > self.grid_size**2:
+            raise ValueError("Trying to set/get value out of bounds")
+
+    def __getitem__(self, cell: int):
+        self.check_index_bounds(cell)
+        return self.cells[cell]

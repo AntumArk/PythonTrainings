@@ -31,9 +31,9 @@ class GameController:
         return True
 
     def play(self):
-        print(self.ultimate_grid)
+        print(str(self.ultimate_grid))
         while not self.ultimate_grid.is_finished():
-            print(self.ultimate_grid)
+            print(str(self.ultimate_grid))
             print(
                 "Select which cell to enter[1-9].\n Current player:",
                 self.current_player,

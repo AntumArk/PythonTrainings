@@ -17,7 +17,15 @@ class UltimateGrid:
         self.cells = [TicTacValues.Z] * (grid_cells)
 
     def __str__(self) -> str:
-        return "pass"
+        rows = [""]
+        index = 0
+        separator = ""
+        grids_strings = [ str(grid).splitlines() for grid in self.grids ]
+        for uiline in self.grid_size+2:
+            first_row =[ bleh[uiline]   for bleh in     grids_strings[0:len(grids_strings)]]
+            rows.append(separator.join(first_row[0]))
+        print(grids_strings)
+        return ""
 
     def is_cell_free(self, active_board: int, cell: int) -> bool:
         return self.grids[active_board].cells[cell] == TicTacValues.Z

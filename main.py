@@ -9,8 +9,9 @@ print("Hello world")
 gridUI = TicTacGrid(1, 1, 3)
 print(gridUI)
 game_grid_size = 3
-
-gridUI.set_cell_value(TicTacValues.X, 5)
+breakpoint()
+gridUI[5] = TicTacValues.X
+print(gridUI[5])
 
 print(gridUI)
 controller = GameController()

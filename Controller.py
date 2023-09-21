@@ -43,9 +43,7 @@ class GameController:
             cell = self.parse_input(input())
             if cell != self.INVALID_INPUT:
                 if self.is_cell_free(cell):
-                    self.ultimate_grid.set_cell_value(
-                        self.active_board, cell, self.current_player
-                    )
+                    self.ultimate_grid[self.active_board][cell] = self.current_player
                     self.switch_player()
                     self.set_active_board(cell)
                 else:
@@ -57,7 +55,7 @@ class GameController:
 
     def set_active_board(self, cell):
         self.active_board = cell
-        if self.ultimate_grid.is_sub_grid_finished(self.active_board):
+        if self.ultimate_grid[self.active_board].is_finished():
             print("Board is already finished, please pick another one")
             while self.pick_board():
                 print("Picking board")
@@ -74,14 +72,14 @@ class GameController:
             print("Invalid input")
             return self.INVALID_INPUT
 
-    def is_cell_free(self, cell: int) -> bool:
-        return self.ultimate_grid.is_cell_free(self.active_board, cell)
-
     def switch_player(self):
         if self.current_player == TicTacValues.X:
             self.current_player = TicTacValues.O
         else:
             self.current_player = TicTacValues.X
+
+    def is_cell_free(self, cell: int) -> bool:
+        return self.ultimate_grid[self.active_board][cell] == TicTacValues.Z
 
     def get_player_from_input(self):
         print('Select which player starts. Enter "X" or "O"')

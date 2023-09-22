@@ -14,10 +14,10 @@ row, col = np.indices((2, 3))
 print(x[row, col])
 print(x)
 allgrid = []
-print([x[:5,i] for i in range(5)])
-print([x[i,:5] for i in range(5)])
-print([x[i,i] for i in range(5)])
-print([x[i,4-i] for i in range(5)])
+# print([x[:5,i] for i in range(5)])
+# print([x[i,:5] for i in range(5)])
+# print([x[i,i] for i in range(5)])
+# print([x[i,4-i] for i in range(5)])
 
 grid_size = 5
 columns =  [x[:grid_size,i] for i in range(grid_size)]
@@ -29,10 +29,11 @@ columns_sum = [sum(columns[i]) for i in range(len(columns))]
 rows_sum = [sum(rows[i]) for i in range(len(rows))]
 main_sum = sum(main_diag)
 sec_sum = sum(sec_diag)
-allgrid=[ columns_sum,
-         rows_sum,
-         main_sum,
+allgrid=[ main_sum,
          sec_sum]
+allgrid.extend(columns_sum)
+allgrid.extend(rows_sum)
+# allgrid = [item for sublist in allgrid for item in sublist]
 print(allgrid)
 breakpoint()
 # grid= TicTacGrid(1,1,4)

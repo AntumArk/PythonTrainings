@@ -23,6 +23,12 @@ def solve_ticTacToe(cells: list[TicTacValues], grid_size: int) -> TicTacGameResu
     return TicTacGameResults.IN_PROGRESS
 
 
+def get_rows(grid_size: int):
+    rows_indexes = []
+    for i in range(grid_size):
+        rows_indexes=[rows_indexes, [i for i in range(i*grid_size,i*grid_size+grid_size)]]
+    print(rows_indexes)
+
 def check_rows(cells: list[TicTacValues], grid_size: int) -> TicTacGameResults:
     print("Checking Rows")
     for row in range(grid_size):

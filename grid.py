@@ -2,6 +2,7 @@
 
 from TicTacToeSolver import solve_ticTacToe
 from TicTacConstants import TicTacValues, TicTacGameResults, TicTacChars
+import numpy as np
 
 
 def print_no_endl(text):
@@ -21,7 +22,7 @@ class TicTacGrid:
         self.grid_draw_scale_x = grid_draw_scale_x
         self.grid_draw_scale_y = grid_draw_scale_y
         self.grid_size = grid_size
-        self.cells = [TicTacValues.Z] * (grid_size**2)
+        self.cells = np.full((grid_size, grid_size), TicTacValues.Z)
 
     def __str__(self) -> str:
         return self.get_grid(self.cells)

@@ -1,7 +1,14 @@
 from TicTacConstants import TicTacValues, TicTacGameResults
+import numpy as np
+
+def solve_ticTacToe(cells:ndarray) -> TicTacGameResults:
+    shape = cells.shape
+    rows_to_check = shape[0]
+    columns_to_check = shape[1]
+
+    row_sum = [sum(row) for row in rows_to_check]
 
 
-def solve_ticTacToe(cells: list[TicTacValues], grid_size: int) -> TicTacGameResults:
     print("Solving")
     result = check_crosses(cells, grid_size)
     if result != TicTacGameResults.IN_PROGRESS:

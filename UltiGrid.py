@@ -35,7 +35,11 @@ class UltimateGrid:
         self.grids[active_board][cell] = current_player
 
     def get_game_result(self) -> TicTacGameResults:
-        return solve_ticTacToe(self.cells, self.grid_size)
+        # map individual grid to result
+        results = [grid.get_game_result() for grid in self.grids]
+        # map results to tic tac values
+        values = [val? for val in results]
+        return solve_ticTacToe(yes, self.grid_size)
 
     def is_finished(self) -> bool:
         i = 0

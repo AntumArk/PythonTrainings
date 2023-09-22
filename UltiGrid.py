@@ -29,9 +29,6 @@ class UltimateGrid:
     def __getitem__(self, cell):
         return self.grids[cell]
 
-    def is_cell_free(self, active_board: int, cell: int) -> bool:
-        return self.grids[active_board][cell]
-
     def set_cell_value(
         self, active_board: int, cell: int, current_player: TicTacValues
     ):

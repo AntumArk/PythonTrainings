@@ -1,24 +1,28 @@
 from TicTacConstants import TicTacValues, TicTacGameResults
 import numpy as np
 
-def solve_ticTacToe(cells:ndarray) -> TicTacGameResults:
+
+def solve_ticTacToe(cells: ndarray) -> TicTacGameResults:
     shape = cells.shape
-    rows_to_check = shape[0]
-    columns_to_check = shape[1]
+    grid_size = shape[0]
 
-    row_sum = [sum(row) for row in rows_to_check]
+    columns = [cells[:grid_size, column] for column in range(grid_size)]
+    rows = [cells[row, :grid_size] for row in range(grid_size)]
+    main_diag = [cells[i, i] for i in range(grid_size)]
+    sec_diag = [cells[i, grid_size - 1 - i] for i in range(grid_size)]
 
+    columns_sum = [sum(columns[i]) for i in range(len(columns))]
+    rows_sum = [sum(rows[i]) for i in range(len(rows))]
+    main_sum = sum(main_diag)
+    sec_sum = sum(sec_diag)
+    results = [main_sum, sec_sum]
+    results.extend(columns_sum)
+    results.extend(rows_sum)
+    # results = [item for sublist in results for item in sublist]
+    print(results)
 
     print("Solving")
-    result = check_crosses(cells, grid_size)
-    if result != TicTacGameResults.IN_PROGRESS:
-        return result
-
-    result = check_rows(cells, grid_size)
-    if result != TicTacGameResults.IN_PROGRESS:
-        return result
-
-    result = check_columns(cells, grid_size)
+    result = check_win(results)
     if result != TicTacGameResults.IN_PROGRESS:
         return result
 
@@ -30,57 +34,11 @@ def solve_ticTacToe(cells:ndarray) -> TicTacGameResults:
     return TicTacGameResults.IN_PROGRESS
 
 
-def get_rows(grid_size: int):
-    rows_indexes = []
-    for i in range(grid_size):
-        rows_indexes=[rows_indexes, [i for i in range(i*grid_size,i*grid_size+grid_size)]]
-    print(rows_indexes)
-
-def check_rows(cells: list[TicTacValues], grid_size: int) -> TicTacGameResults:
-    print("Checking Rows")
-    for row in range(grid_size):
-        cell_sum = sum(cells[row * grid_size : row * grid_size + grid_size])
-        print("cell_sum ", cell_sum)
-        result = check_win(cell_sum)
-        if result != TicTacGameResults.IN_PROGRESS:
-            return result
-    return TicTacGameResults.IN_PROGRESS
-
-
-def check_columns(cells: list[TicTacValues], grid_size: int) -> TicTacGameResults:
-    print("Checking Columns")
-    for column in range(grid_size):
-        cell_sum = sum(cells[column::grid_size])
-        print("cell_sum ", cell_sum)
-        result = check_win(cell_sum)
-        if result != TicTacGameResults.IN_PROGRESS:
-            return result
-    return TicTacGameResults.IN_PROGRESS
-
-
-def check_crosses(cells: list[TicTacValues], grid_size: int) -> TicTacGameResults:
-    # Primary principal
-    print("Checking crosses")
-    cell_sum = sum(cells[0 :: (grid_size - 1) + 2])
-    print("cell_sum ", cell_sum)
-    result = check_win(cell_sum)
-    if result != TicTacValues.Z:
-        return result
-
-    # Secondary principal
-    cell_sum = sum(cells[grid_size - 1 :: grid_size])
-    print("cell_sum ", cell_sum)
-    result = check_win(cell_sum)
-    if result != TicTacGameResults.IN_PROGRESS:
-        return result
-    return TicTacGameResults.IN_PROGRESS
-
-
-def check_win(cell_sum: int) -> TicTacGameResults:
-    if cell_sum == 3 * TicTacValues.X.value:
+def check_win(cell_sum: list[int]) -> TicTacGameResults:
+    if 3 * TicTacValues.X.value in cell_sum:
         print("X WON!")
         return TicTacGameResults.X_WON
-    if cell_sum == 3 * TicTacValues.O.value:
+    if 3 * TicTacValues.O.value in cell_sum:
         print("O WON!")
         return TicTacGameResults.O_WON
     return TicTacGameResults.IN_PROGRESS

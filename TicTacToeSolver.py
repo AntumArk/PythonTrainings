@@ -1,23 +1,24 @@
 from TicTacConstants import TicTacValues, TicTacGameResults
-import numpy as np
 
 
-def solve_ticTacToe(cells: ndarray) -> TicTacGameResults:
+def solve_ticTacToe(cells) -> TicTacGameResults:
     shape = cells.shape
     grid_size = shape[0]
-
-    columns = [cells[:grid_size, column] for column in range(grid_size)]
-    rows = [cells[row, :grid_size] for row in range(grid_size)]
-    main_diag = [cells[i, i] for i in range(grid_size)]
-    sec_diag = [cells[i, grid_size - 1 - i] for i in range(grid_size)]
-
-    columns_sum = [sum(columns[i]) for i in range(len(columns))]
-    rows_sum = [sum(rows[i]) for i in range(len(rows))]
-    main_sum = sum(main_diag)
-    sec_sum = sum(sec_diag)
-    results = [main_sum, sec_sum]
-    results.extend(columns_sum)
-    results.extend(rows_sum)
+    columns = []
+    rows = []
+    main_diag = []
+    sec_diag = []
+    results = []
+    for i in range(grid_size):
+        columns = cells[:grid_size][i]  # columns
+        rows = cells[i][:grid_size]  # rows
+        results.append(sum(columns))
+        results.append(sum(rows))
+        main_diag.append(cells[i][i])
+        sec_diag.append(cells[i][grid_size - 1 - i])
+    
+    results.append(sum(main_diag))
+    results.append(sum(sec_diag))
     # results = [item for sublist in results for item in sublist]
     print(results)
 
@@ -44,5 +45,5 @@ def check_win(cell_sum: list[int]) -> TicTacGameResults:
     return TicTacGameResults.IN_PROGRESS
 
 
-def check_board_full(cells: ndarray) -> bool:
+def check_board_full(cells) -> bool:
     return TicTacValues.Z not in cells

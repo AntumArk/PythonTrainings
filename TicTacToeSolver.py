@@ -44,8 +44,5 @@ def check_win(cell_sum: list[int]) -> TicTacGameResults:
     return TicTacGameResults.IN_PROGRESS
 
 
-def check_board_full(cells: list[TicTacValues]) -> bool:
-    for _, cell in enumerate(cells):
-        if cell.value == TicTacValues.Z:
-            return False
-    return True
+def check_board_full(cells: ndarray) -> bool:
+    return TicTacValues.Z not in cells
